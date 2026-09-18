@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 会員限定の価格ページのため、検索エンジンには載せない -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="セラピストドットコム会員限定 MTG3ブランド特別販売">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏷️</text></svg>">
+<title>MTG シルバーウィーク特別販売</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  /* このページはライトモード固定。OSがダーク設定でも白地で表示する */
+  color-scheme:light;
+
+  /* セラピストドットコム ブランド（主要操作） */
+  --brand-1:#45D0B0;
+  --brand-2:#4A9AE8;
+  --brand-grad:linear-gradient(112deg,#45D0B0 0%,#4A9AE8 100%);
+  --accent:#0F7EA8;
+  --accent-ink:#0B5F80;
+  --accent-soft:#E4F4F7;
+
+  /* 秋の設え（装飾のみ。操作には使わない） */
+  --momiji:#C4462C;
+  --kaki:#D9812B;
+  --icho:#E0AE47;
+  --autumn-rule:linear-gradient(90deg,#C4462C 0%,#D9812B 52%,#E0AE47 100%);
+
+  /* ニュートラルはわずかに暖色へ寄せる */
+  --ink:#1A1512;
+  --ink-2:#584E47;
+  --ink-3:#8C8179;
+  --ground:#FFFFFF;
+  --surface:#FFFFFF;
+  --surface-2:#FBF8F4;
+  --line:#E8E3DC;
+  --line-strong:#D5CCC2;
+
+  --warn:#94540E;
+  --warn-soft:#FDF2E2;
+  --warn-line:#E8C99D;
+  --danger:#A61E1E;
+  --danger-soft:#FBEAEA;
+  --ok:#1B7A5A;
+  --ok-soft:#E5F4EE;
+
+  --media-plate:#FFFFFF;
+  --shadow:0 1px 2px rgba(26,21,18,.04),0 10px 26px -14px rgba(26,21,18,.16);
+  --radius:14px;
+  --mono:"IBM Plex Mono","SFMono-Regular",Menlo,monospace;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans",system-ui,sans-serif;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--body);font-size:15px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.35}
+button{font-family:inherit;font-size:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+
+/* ---------- header ---------- */
+.topbar{
+  background:var(--surface);border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:40;
+}
+.topbar-in{
+  max-width:1280px;margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.logo-mark{
+  width:30px;height:30px;border-radius:9px;background:var(--brand-grad);
+  display:grid;place-items:center;flex:none;
+  font-family:var(--display);font-weight:900;color:#fff;font-size:17px;line-height:1;
+}
+.logo-text{font-family:var(--display);font-weight:900;font-size:16px;letter-spacing:.02em}
+.topbar-meta{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2)}
+.deadline-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--accent-soft);color:var(--accent-ink);
+  padding:5px 11px;border-radius:999px;font-weight:700;font-size:12px;
+}
+
+/* ---------- hero（秋の設え） ---------- */
+.hero{position:relative;overflow:hidden;background:var(--surface);border-bottom:1px solid var(--line)}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(68% 120% at 93% -4%, rgba(224,174,71,.20) 0%, rgba(224,174,71,0) 64%),
+    radial-gradient(58% 108% at 76% 108%, rgba(196,70,44,.12) 0%, rgba(196,70,44,0) 62%);
+}
+.leaves{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.leaf{
+  position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);
+  transform:rotate(var(--r));opacity:var(--o);color:var(--c);
+}
+.leaf svg{width:100%;height:100%;fill:currentColor;display:block}
+@media (max-width:760px){.leaf[data-sm="hide"]{display:none}}
+
+.hero-in{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:36px 20px 30px}
+.eyebrow{
+  font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.18em;
+  color:var(--ink-3);margin-bottom:12px;
+}
+.eyebrow .season{color:var(--momiji)}
+.hero h1{font-size:clamp(28px,4.4vw,44px);font-weight:900;letter-spacing:-.01em;max-width:20ch}
+.hero h1 .grad{
+  background:var(--brand-grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--brand-2);
+}
+.hero p{margin:14px 0 0;max-width:62ch;color:var(--ink-2)}
+.hero-facts{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;
+}
+.fact{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:10px;
+  padding:10px 14px;display:flex;flex-direction:column;gap:1px;min-width:132px;
+}
+.fact dt{font-size:11px;color:var(--ink-3);letter-spacing:.06em;font-weight:500}
+.fact dd{margin:0;font-family:var(--display);font-weight:700;font-size:15px}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1280px;margin:0 auto;padding:26px 20px 140px;display:grid;gap:26px}
+@media (min-width:1040px){
+  .wrap{grid-template-columns:minmax(0,1fr) 352px;align-items:start}
+}
+
+/* ---------- brand nav ---------- */
+.brandnav{
+  display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:57px;z-index:30;
+  background:var(--ground);padding:12px 0;margin-bottom:-6px;
+}
+.brandnav button{
+  border:1px solid var(--line-strong);background:var(--surface);
+  padding:7px 15px;border-radius:999px;cursor:pointer;
+  font-family:var(--display);font-weight:700;font-size:13px;
+}
+.brandnav button[aria-current="true"]{
+  background:var(--brand-grad);color:#fff;border-color:transparent;
+}
+
+/* ---------- brand section ---------- */
+.brand-head{display:flex;align-items:baseline;gap:12px;margin:30px 0 4px;flex-wrap:wrap}
+.brand-head h2{font-size:24px;font-weight:900;letter-spacing:.01em}
+.brand-head .count{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+.brand-rule{height:3px;width:52px;border-radius:2px;background:var(--autumn-rule);margin:9px 0 11px}
+.brand-lede{color:var(--ink-2);font-size:13.5px;margin:0 0 16px;max-width:64ch}
+
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(282px,1fr))}
+
+/* ---------- product media ---------- */
+.media{
+  position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;
+  background:var(--media-plate);border:1px solid var(--line);
+  display:grid;place-items:center;
+}
+/* 商品画像は白背景。プレート色は :root のトークンで定義 */
+.media img{width:100%;height:100%;object-fit:contain;display:block}
+.media .glyph{width:58%;max-width:140px;color:#A89D93}
+.media .ph-label{
+  position:absolute;bottom:8px;left:0;right:0;text-align:center;
+  font-size:9.5px;letter-spacing:.09em;color:#9B9088;font-family:var(--display);font-weight:700;
+}
+
+/* ---------- 公式サイト導線 ---------- */
+.card-id{display:flex;flex-direction:column;gap:5px}
+.oflink{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:700;font-family:var(--display);color:var(--accent);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line-strong);
+}
+.oflink:hover{text-decoration-color:var(--accent)}
+.oflink svg{width:11px;height:11px;flex:none}
+
+/* ---------- product card ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 16px 14px;display:flex;flex-direction:column;gap:11px;
+}
+.card.is-added{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card-top{display:flex;gap:8px;align-items:flex-start}
+.card h3{font-size:15.5px;font-weight:700;line-height:1.5;flex:1}
+.tag{
+  font-size:10.5px;font-weight:700;padding:3px 7px;border-radius:5px;flex:none;
+  letter-spacing:.04em;font-family:var(--display);
+}
+.tag-new{background:var(--brand-grad);color:#fff}
+
+.price{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.price-now{font-family:var(--mono);font-size:23px;font-weight:600;letter-spacing:-.02em}
+.price-now small{font-size:12px;font-family:var(--body);font-weight:500;color:var(--ink-2)}
+.price-was{font-size:12px;color:var(--ink-3)}
+.price-was s{text-decoration-thickness:1px}
+.off{
+  font-family:var(--display);font-weight:900;font-size:11.5px;color:#fff;
+  background:var(--accent);padding:2px 7px;border-radius:5px;letter-spacing:.02em;
+}
+.price-sub{font-size:11.5px;color:var(--ink-3);margin-top:-6px}
+
+.opt{display:flex;flex-direction:column;gap:5px}
+.opt-label{font-size:11px;font-weight:700;color:var(--ink-3);letter-spacing:.08em}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{
+  border:1px solid var(--line-strong);background:var(--surface-2);
+  padding:5px 12px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;
+  font-family:var(--mono);
+}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt-fixed{
+  align-self:flex-start;border:1px solid var(--line);background:var(--surface-2);
+  border-radius:8px;padding:6px 12px;font-size:13px;color:var(--ink-2);
+}
+select.opt-select{
+  border:1px solid var(--line-strong);background:var(--surface-2);color:var(--ink);
+  border-radius:8px;padding:7px 10px;font-size:13px;font-family:var(--body);width:100%;
+}
+.card-foot{display:flex;gap:8px;align-items:center;margin-top:auto;padding-top:4px}
+.stepper{display:flex;align-items:center;border:1px solid var(--line-strong);border-radius:9px;overflow:hidden;flex:none}
+.stepper button{width:32px;height:36px;border:0;background:var(--surface-2);cursor:pointer;font-size:17px;line-height:1}
+.stepper button:hover{background:var(--accent-soft)}
+.stepper .qty{width:36px;text-align:center;font-family:var(--mono);font-weight:600;font-size:14px}
+.btn-add{
+  flex:1;border:0;border-radius:9px;padding:9px 12px;cursor:pointer;
+  background:var(--brand-grad);color:#fff;font-family:var(--display);font-weight:700;font-size:13.5px;
+}
+.btn-add:hover{filter:brightness(1.06)}
+.btn-add.done{background:var(--ok);}
+
+/* ---------- panel ---------- */
+.panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+/* PC：申請リストをスクロールに追従させる。
+   sticky は「親の高さ > 自分の高さ」でないと動かないため、
+   グリッド項目である aside 自体を sticky にする。 */
+@media (min-width:1040px){
+  aside{
+    position:sticky;top:76px;
+    max-height:calc(100vh - 92px);
+    display:flex;flex-direction:column;
+  }
+  .panel{display:flex;flex-direction:column;min-height:0;max-height:100%}
+  .panel-head,.totals,#alertZone,.panel-actions{flex:none}
+  .panel-body{flex:1 1 auto;min-height:72px;max-height:none}
+}
+.panel-head{
+  padding:14px 16px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:8px;
+}
+.panel-head h2{font-size:15px;font-weight:900}
+.panel-head .badge{
+  margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:600;
+  background:var(--accent-soft);color:var(--accent-ink);padding:2px 9px;border-radius:999px;
+}
+.panel-body{max-height:min(46vh,420px);overflow-y:auto}
+.empty{padding:26px 18px;text-align:center;color:var(--ink-3);font-size:13px}
+.empty strong{display:block;color:var(--ink-2);font-family:var(--display);font-size:14px;margin-bottom:5px}
+
+.line{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.line-main{flex:1;min-width:0}
+.line-name{font-size:13px;font-weight:700;line-height:1.5}
+.line-var{font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
+.line-calc{font-size:12px;color:var(--ink-2);font-family:var(--mono);margin-top:3px}
+.line-side{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.line-sum{font-family:var(--mono);font-weight:600;font-size:14px;white-space:nowrap}
+.line-del{border:0;background:none;cursor:pointer;color:var(--ink-3);font-size:11px;padding:0;text-decoration:underline}
+.line-del:hover{color:var(--danger)}
+
+.ship-opt{
+  display:flex;align-items:center;gap:9px;padding:11px 16px;cursor:pointer;
+  border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-2);
+}
+.ship-opt:hover{background:var(--surface-2)}
+.ship-opt input{accent-color:var(--accent);width:15px;height:15px;flex:none;cursor:pointer;margin:0}
+.totals{padding:14px 16px;border-top:1px solid var(--line);background:var(--surface-2)}
+.trow{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--ink-2);padding:3px 0}
+.trow .num{color:var(--ink);font-size:13.5px}
+.trow.grand{border-top:1px dashed var(--line-strong);margin-top:8px;padding-top:10px}
+.trow.grand span:first-child{font-family:var(--display);font-weight:700;color:var(--ink);font-size:14px}
+.trow.grand .num{font-size:21px}
+.ship-free{color:var(--ok);font-weight:700}
+
+.alert{
+  margin:0;padding:11px 14px;font-size:12.5px;line-height:1.65;
+  display:flex;gap:9px;align-items:flex-start;border-top:1px solid var(--line);
+}
+.alert b{font-family:var(--display)}
+.alert-icon{flex:none;font-family:var(--display);font-weight:900;width:17px;height:17px;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;color:#fff;margin-top:3px}
+.alert-warn{background:var(--warn-soft);color:var(--warn);border-top-color:var(--warn-line)}
+.alert-warn .alert-icon{background:var(--warn)}
+.alert-block{background:var(--danger-soft);color:var(--danger)}
+.alert-block .alert-icon{background:var(--danger)}
+.alert-ok{background:var(--ok-soft);color:var(--ok)}
+.alert-ok .alert-icon{background:var(--ok)}
+
+.panel-actions{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.btn-primary{
+  display:block;width:100%;border:0;border-radius:10px;padding:13px;cursor:pointer;
+  background:var(--brand-grad);color:#fff;font-family:var(--display);font-weight:900;font-size:15px;
+  text-align:center;text-decoration:none;line-height:1.5;
+}
+.btn-primary:hover{filter:brightness(1.06);color:#fff}
+.btn-primary[aria-disabled="true"]{
+  background:var(--line-strong);color:var(--ink-3);cursor:not-allowed;filter:none;pointer-events:none;
+}
+.btn-ghost{
+  width:100%;border:1px solid var(--line-strong);background:var(--surface);border-radius:10px;
+  padding:10px;cursor:pointer;font-family:var(--display);font-weight:700;font-size:13px;
+}
+.btn-ghost:hover{background:var(--surface-2)}
+.panel-note{font-size:11px;color:var(--ink-3);line-height:1.6;margin:2px 0 0}
+
+/* ---------- rules ---------- */
+.rules{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;margin-top:26px;
+}
+.rules h2{position:relative;padding-bottom:9px}
+.rules h2::after{
+  content:"";position:absolute;left:0;bottom:0;width:52px;height:3px;border-radius:2px;
+  background:var(--autumn-rule);
+}
+.rules h2{font-size:17px;font-weight:900;margin-bottom:12px}
+.rules dl{margin:0;display:grid;gap:0}
+.rules dt{
+  font-family:var(--display);font-weight:700;font-size:13px;color:var(--accent-ink);
+  padding-top:11px;border-top:1px solid var(--line);
+}
+.rules dd{margin:2px 0 11px;font-size:13px;color:var(--ink-2);line-height:1.7}
+.rules dt:first-of-type{border-top:0;padding-top:0}
+.foot{text-align:center;font-size:11.5px;color:var(--ink-3);padding:22px 20px 0}
+
+/* ---------- mobile dock ---------- */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);
+  border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:12px;box-shadow:0 -6px 24px -14px rgba(16,22,25,.4);
+}
+.dock-sum{flex:1;min-width:0}
+.dock-lab{font-size:10.5px;color:var(--ink-3);letter-spacing:.06em}
+.dock-val{font-family:var(--mono);font-weight:600;font-size:18px}
+.dock .dock-btn{
+  border:0;border-radius:9px;padding:11px 18px;background:var(--brand-grad);color:#fff;
+  font-family:var(--display);font-weight:900;font-size:14px;cursor:pointer;flex:none;
+  text-decoration:none;white-space:nowrap;
+}
+.dock .dock-btn:hover{color:#fff;filter:brightness(1.06)}
+.dock .dock-btn[aria-disabled="true"]{
+  background:var(--line-strong);color:var(--ink-3);cursor:not-allowed;pointer-events:none;
+}
+@media (min-width:1040px){.dock{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:86px;z-index:60;
+  background:var(--ink);color:var(--ground);padding:10px 18px;border-radius:999px;
+  font-size:13px;font-weight:700;font-family:var(--display);box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+</style>
+<style>img{max-width:100%}</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="#top"><span class="logo-mark">T</span><span class="logo-text">セラピストドットコム</span></a>
+    <div class="topbar-meta">
+      <span class="deadline-pill" id="deadlinePill">申込締切 —</span>
+    </div>
+  </div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="lf-momiji" viewBox="0 0 64 64">
+    <path d="M32 3 38 19 50 14 42 27.5 61 32 39.5 35.5 47 45 34.5 41.5 33.5 60 30.5 60 29.5 41.5 17 45 24.5 35.5 3 32 22 27.5 14 14 26 19Z"/>
+  </symbol>
+  <symbol id="lf-icho" viewBox="0 0 64 64">
+    <path d="M30.5 60 30.5 41C20 39 9 32 5 19C13 14.5 22 12.5 31 14L32 26 33 14C42 12.5 51 14.5 59 19C55 32 44 39 33.5 41L33.5 60Z"/>
+  </symbol>
+</svg>
+
+<section class="hero" id="top">
+  <div class="leaves" aria-hidden="true">
+    <span class="leaf" style="--x:78%;--y:3%;--s:84px;--r:-16deg;--o:.22;--c:var(--momiji)"><svg><use href="#lf-momiji"></use></svg></span>
+    <span class="leaf" style="--x:89%;--y:40%;--s:50px;--r:24deg;--o:.18;--c:var(--icho)"><svg><use href="#lf-icho"></use></svg></span>
+    <span class="leaf" style="--x:69%;--y:64%;--s:60px;--r:-38deg;--o:.15;--c:var(--kaki)"><svg><use href="#lf-momiji"></use></svg></span>
+    <span class="leaf" data-sm="hide" style="--x:63%;--y:9%;--s:34px;--r:14deg;--o:.13;--c:var(--icho)"><svg><use href="#lf-icho"></use></svg></span>
+    <span class="leaf" data-sm="hide" style="--x:85%;--y:76%;--s:32px;--r:-8deg;--o:.18;--c:var(--momiji)"><svg><use href="#lf-momiji"></use></svg></span>
+    <span class="leaf" data-sm="hide" style="--x:54%;--y:82%;--s:42px;--r:32deg;--o:.11;--c:var(--kaki)"><svg><use href="#lf-icho"></use></svg></span>
+    <span class="leaf" data-sm="hide" style="--x:-3%;--y:70%;--s:66px;--r:16deg;--o:.09;--c:var(--icho)"><svg><use href="#lf-momiji"></use></svg></span>
+    <span class="leaf" data-sm="hide" style="--x:33%;--y:-9%;--s:38px;--r:-24deg;--o:.09;--c:var(--momiji)"><svg><use href="#lf-icho"></use></svg></span>
+  </div>
+  <div class="hero-in">
+    <div class="eyebrow"><span class="season">2026 AUTUMN</span> ／ MTG BRAND ／ 会員限定</div>
+    <h1>シルバーウィーク<br><span class="grad">全品15%OFF</span> 特別販売</h1>
+    <p>セラピストドットコム会員の皆さま限定で、MTGの <strong>SIXPAD</strong>・<strong>Style</strong>・<strong>ReD</strong> 3ブランドを通常価格から一律15%OFFでご購入いただけます。欲しい商品をリストに入れて、そのまま購入申請フォームへ進んでください。</p>
+    <dl class="hero-facts">
+      <div class="fact"><dt>割引率</dt><dd>全商品 一律15%OFF</dd></div>
+      <div class="fact"><dt>対象ブランド</dt><dd>SIXPAD / Style / ReD</dd></div>
+      <div class="fact"><dt>送料</dt><dd id="factShip">—</dd></div>
+      <div class="fact"><dt>お支払い</dt><dd>銀行振込（前払い）</dd></div>
+    </dl>
+  </div>
+</section>
+
+<main class="wrap">
+  <div>
+    <nav class="brandnav" id="brandnav" aria-label="ブランド切り替え"></nav>
+    <div id="catalog"></div>
+
+    <section class="rules">
+      <h2>ご利用にあたって</h2>
+      <dl id="rulesList"></dl>
+    </section>
+    <p class="foot">セラピストドットコム事務局　<span id="footMail"></span></p>
+  </div>
+
+  <aside>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>購入申請リスト</h2>
+        <span class="badge num" id="panelCount">0点</span>
+      </div>
+      <div class="panel-body" id="panelBody"></div>
+      <label class="ship-opt" for="remoteArea">
+        <input type="checkbox" id="remoteArea">
+        <span>沖縄・離島へのお届け（送料 +1,500円）</span>
+      </label>
+      <div class="totals" id="totals"></div>
+      <div id="alertZone"></div>
+      <div class="panel-actions">
+        <a class="btn-primary" id="btnSubmit" aria-disabled="true"
+           target="_blank" rel="noopener noreferrer">購入申請フォームへ進む</a>
+        <p class="panel-note" id="submitNote"></p>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<div class="dock">
+  <div class="dock-sum">
+    <div class="dock-lab">お支払い合計（税込）</div>
+    <div class="dock-val" id="dockVal">0円</div>
+  </div>
+  <a class="dock-btn" id="dockBtn" aria-disabled="true"
+     target="_blank" rel="noopener noreferrer">申請へ進む</a>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   ■ 設定（運営担当者はここだけ書き換えてください）
+   ===================================================================== */
+const CONFIG = {
+  /* Googleフォームの公開URL。GASのsetupCampaign()実行後に表示される
+     「viewform」のURLを貼り付けてください。空のままでもメール申請で動作します。 */
+  formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSesxhjGjZhPEumNeYXYNn5yLwvZ68dT-Qkak_yWyqMy9nZzQw/viewform',
+
+  /* GASのsetupCampaign()が出力する entry.xxxxx を貼り付けてください */
+  entry: {
+    orderId: 'entry.854858864',   // 申請ID
+    items:   'entry.930763635',   // ご注文内容
+    total:   'entry.38109527'     // お支払い合計
+  },
+
+  contactEmail: 'sampo_community@backtech.co.jp',
+  deadlineLabel: '2026年9月30日(水) 23:59',
+  shippingFee: 880,        // 送料（税込・全国一律）
+  freeShipOver: 11000,     // この金額（税込）以上で送料無料
+  remoteAreaFee: 1500,     // 沖縄・離島への追加送料（税込）。送料無料の場合も申し受ける
+  minOrder: 0,             // 最低申請金額（税込）。0 = 制限なし。
+                           // 送料880円が赤字を吸収するため下限は不要（docs/内部_採算アラート.md 参照）
+  discountRate: 0.15,
+  taxRate: 0.10
+};
+
+/* =====================================================================
+   ■ 商品マスタ  price = 通常価格（税抜）
+   ===================================================================== */
+const BRANDS = [
+  { key:'sixpad', name:'SIXPAD',
+    lede:'EMSトレーニング・ボディケア機器。医療機器認証を取得したMedical Coreシリーズを含みます。' },
+  { key:'style', name:'Style',
+    lede:'座るだけで姿勢をサポートする骨盤サポートチェア。施術後の姿勢保持提案とあわせてご活用ください。' },
+  { key:'red', name:'ReD',
+    lede:'着るだけのリカバリーウェア。インナー・パジャマなどのバイタルテックシリーズ。' }
+];
+
+const SZ  = ['S','M','L','LL'];
+const PRODUCTS = [
+  // ---- SIXPAD ----
+  { b:'sixpad', n:'SIXPAD Medical Core',            p:41000, sizes:['S','M','L'] },
+  { b:'sixpad', n:'SIXPAD Medical Core 専用コントローラー', p:12000 },
+  { b:'sixpad', n:'SIXPAD Core Belt 2',             p:31900, sizes:SZ, colors:['ブラック'] },
+  { b:'sixpad', n:'SIXPAD Core Belt 2 専用コントローラー',  p:9000,  colors:['ブラック'] },
+  { b:'sixpad', n:'SIXPAD Core Hip',                p:53000, sizes:['S','M','L'], isNew:true },
+  { b:'sixpad', n:'SIXPAD Foot Fit 3 Compact',      p:35000, isNew:true },
+  { b:'sixpad', n:'SIXPAD Power Gun Pocket',        p:12500, colors:['レッド','ブラック','ピンク','グリーン','ブルー','シルバー'] },
+  { b:'sixpad', n:'SIXPAD Power Gun Active',        p:18000, colors:['ホワイト','ブラック'] },
+  // ---- Style ----
+  { b:'style',  n:'Style Standard（F01）', p:9800,  colors:['ピンク','ブラウン','グレー','ベージュ','ライトグレー'] },
+  { b:'style',  n:'Style Standard（N01）', p:8800,  colors:['ブラック','グレー'] },
+  { b:'style',  n:'Style SMART',           p:16800, colors:['ブラック','ブラウン','ネイビー'] },
+  { b:'style',  n:'Style PREMIUM',         p:23800, colors:['ブラック','ブラウン'] },
+  { b:'style',  n:'Style Dr. CHAIR Plus',  p:50000, colors:['レッド','ブラウン','ブルー'] },
+  { b:'style',  n:'Style Drive S',         p:7000,  colors:['ブラック'] },
+  // ---- ReD ----
+  { b:'red', n:'ReD バイタルテック Vネックインナー長袖（メンズ）', p:4500, sizes:SZ, colors:['ブラック','ベージュ','ホワイト'] },
+  { b:'red', n:'ReD バイタルテック Vネックインナー半袖（メンズ）', p:3600, sizes:['S','M','L'], colors:['ホワイト','ブラック','ベージュ'] },
+  { b:'red', n:'ReD バイタルテック Uネックインナー長袖（ウィメンズ）', p:4500, sizes:SZ, colors:['ブラック','ベージュ','ホワイト'] },
+  { b:'red', n:'ReD バイタルテック Uネックインナー半袖（ウィメンズ）', p:3600, sizes:SZ, colors:['ホワイト','ブラック','ベージュ'] },
+  { b:'red', n:'ReD バイタルテック スリープ パジャマトップス長袖（ユニセックス）', p:8000, sizes:SZ, colors:['ピンク','ネイビー','ライトグレー'] },
+  { b:'red', n:'ReD バイタルテック スリープ パジャマロングパンツ（ユニセックス）', p:7000, sizes:SZ, colors:['ピンク','ネイビー','ライトグレー'] }
+];
+
+
+/* 画像ファイル名 と プレースホルダ種別（PRODUCTS と同じ並び順） */
+const META = [
+  ['sixpad-medical-core','vest'],            ['sixpad-medical-core-controller','ctrl'],
+  ['sixpad-core-belt-2','belt'],             ['sixpad-core-belt-2-controller','ctrl'],
+  ['sixpad-core-hip','hip'],                 ['sixpad-foot-fit-3-compact','foot'],
+  ['sixpad-power-gun-pocket','gun'],         ['sixpad-power-gun-active','gun'],
+  ['style-standard-f01','cushion'],          ['style-standard-n01','cushion'],
+  ['style-smart','chair'],                   ['style-premium','chair'],
+  ['style-dr-chair-plus','chairbig'],        ['style-drive-s','drive'],
+  ['red-vneck-long-mens','longtee'],         ['red-vneck-short-mens','tee'],
+  ['red-uneck-long-womens','longtee'],       ['red-uneck-short-womens','tee'],
+  ['red-pajama-tops','pajama'],              ['red-pajama-pants','pants']
+];
+const IMG_DIR = 'assets/', IMG_EXT = '.png';
+
+const GLYPH = {
+  vest:'<path d="M14 10h16l6 7 6-7h16v44H14z"/><path d="M32 17v37"/><circle cx="23" cy="26" r="3"/>',
+  ctrl:'<rect x="21" y="8" width="22" height="48" rx="6"/><circle cx="32" cy="20" r="3"/><path d="M26 32h12M26 40h12M26 48h12"/>',
+  belt:'<rect x="6" y="20" width="52" height="24" rx="7"/><path d="M32 20v24"/><path d="M18 27v10M46 27v10"/>',
+  hip:'<path d="M18 10h28l4 20-6 24h-9l-3-22-3 22h-9l-6-24z"/>',
+  foot:'<rect x="8" y="18" width="48" height="28" rx="6"/><ellipse cx="22" cy="32" rx="6" ry="9"/><ellipse cx="42" cy="32" rx="6" ry="9"/>',
+  gun:'<rect x="24" y="6" width="16" height="26" rx="5"/><path d="M27 32h10l-2 22h-6z"/><circle cx="32" cy="16" r="4"/>',
+  cushion:'<path d="M20 12a9 9 0 0 1 12 6 9 9 0 0 1 12-6 9 9 0 0 1 0 18 9 9 0 0 1-12 6 9 9 0 0 1-12-6 9 9 0 0 1 0-18z"/><path d="M14 44c6 8 30 8 36 0"/>',
+  chair:'<path d="M18 8c8 2 20 2 28 0l-3 22H21z"/><path d="M12 30h40l-4 24H16z"/>',
+  chairbig:'<path d="M14 10h10v18h16V10h10v44H14z"/><path d="M24 28h16"/>',
+  drive:'<path d="M10 22c10-8 34-8 44 0l-4 24H14z"/><path d="M10 34h44"/>',
+  tee:'<path d="M22 10h20l12 8-6 8-6-4v28H22V22l-6 4-6-8z"/>',
+  longtee:'<path d="M22 10h20l14 8-4 26-8-3v17H20V41l-8 3-4-26z"/>',
+  pajama:'<path d="M22 10h20l12 8-5 8-5-3v29H20V23l-5 3-5-8z"/><path d="M32 12v16"/><path d="M28 36h3"/>',
+  pants:'<path d="M18 8h28v12l-3 36h-9l-2-26-2 26h-9l-3-36z"/><path d="M18 20h28"/>'
+};
+const glyphSVG = k => `<svg class="glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">${GLYPH[k]||GLYPH.ctrl}</svg>`;
+
+
+/* 公式サイトの商品ページ（2026-09-18 時点で全URL 200 応答を確認済み） */
+const D = '公式サイトで詳細を見る';
+const LINKS = [
+  ['https://www.mtgec.jp/wellness/sixpad/products/medicalcore/', D],
+  ['https://www.mtgec.jp/wellness/sixpad/products/medicalcore/', '公式サイトで本体の詳細を見る'],
+  ['https://www.mtgec.jp/wellness/sixpad/products/corebelt2/', D],
+  ['https://www.mtgec.jp/wellness/sixpad/products/corebelt2/', '公式サイトで本体の詳細を見る'],
+  ['https://www.mtgec.jp/wellness/sixpad/products/corehip/', D],
+  ['https://www.mtgec.jp/wellness/sixpad/products/footfit3/', D],
+  ['https://www.mtgec.jp/wellness/sixpad/products/powergunpocket/', D],
+  ['https://www.mtgec.jp/wellness/sixpad/products/powergunactive/', D],
+  ['https://www.mtgec.jp/shop/pages/style_standard.aspx', D],
+  ['https://www.mtgec.jp/shop/pages/style_standard.aspx', D],
+  ['https://www.mtgec.jp/shop/g/g3864020101/', D],
+  ['https://www.mtgec.jp/shop/g/g9557901001/', D],
+  ['https://www.mtgec.jp/shop/g/g3167201101/', D],
+  ['https://www.mtgec.jp/shop/g/g9972010101/', D],
+  ['https://www.mtgec.jp/red/shop/r/r2010/', '公式サイトでメンズインナーを見る'],
+  ['https://www.mtgec.jp/red/shop/r/r2010/', '公式サイトでメンズインナーを見る'],
+  ['https://www.mtgec.jp/red/shop/r/r1010/', '公式サイトでウィメンズインナーを見る'],
+  ['https://www.mtgec.jp/red/shop/r/r1010/', '公式サイトでウィメンズインナーを見る'],
+  ['https://www.mtgec.jp/red/shop/r/r1030/', '公式サイトでスリープウェアを見る'],
+  ['https://www.mtgec.jp/red/shop/r/r1030/', '公式サイトでスリープウェアを見る']
+];
+const EXT_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2H2v12h12v-4"/><path d="M10 2h4v4"/><path d="M7.5 8.5 14 2"/></svg>';
+
+/* ---------- 価格計算 ---------- */
+const exTax = p => Math.round(p * (1 - CONFIG.discountRate));
+const inTax = p => Math.round(exTax(p) * (1 + CONFIG.taxRate));
+const yen   = n => n.toLocaleString('ja-JP') + '円';
+
+PRODUCTS.forEach((p, i) => {
+  p.id = 'P' + String(i + 1).padStart(2, '0');
+  p.img = IMG_DIR + (META[i] ? META[i][0] : p.id) + IMG_EXT;
+  p.kind = META[i] ? META[i][1] : 'ctrl';
+  if (LINKS[i]) { p.url = LINKS[i][0]; p.urlLabel = LINKS[i][1]; }
+});
+
+/* ---------- 状態 ---------- */
+const cart = new Map();
+const draft = {};                       // カードごとの選択状態
+const $ = s => document.querySelector(s);
+
+/* ---------- カタログ描画 ---------- */
+function buildCatalog(){
+  $('#brandnav').innerHTML = BRANDS.map((b,i) =>
+    `<button type="button" data-b="${b.key}" aria-current="${i===0}">${b.name}</button>`).join('');
+
+  $('#catalog').innerHTML = BRANDS.map(b => {
+    const list = PRODUCTS.filter(p => p.b === b.key);
+    return `<section class="brand-sec" id="sec-${b.key}">
+      <div class="brand-head"><h2>${b.name}</h2><span class="count">${list.length} items</span></div>
+      <div class="brand-rule"></div>
+      <p class="brand-lede">${b.lede}</p>
+      <div class="grid">${list.map(cardHTML).join('')}</div>
+    </section>`;
+  }).join('');
+}
+
+function wireImages(){
+  document.querySelectorAll('.media img').forEach(img => {
+    const swap = () => {
+      const m = img.closest('.media');
+      if (!m) return;
+      m.innerHTML = glyphSVG(m.dataset.kind) +
+        '<span class="ph-label">商品画像は準備中です</span>';
+    };
+    if (img.complete && img.naturalWidth === 0) swap();
+    else img.addEventListener('error', swap, { once:true });
+  });
+}
+
+function cardHTML(p){
+  draft[p.id] = { size: p.sizes ? p.sizes[0] : '', color: p.colors ? p.colors[0] : '', qty: 1 };
+  const sizeBlock = p.sizes ? `
+    <div class="opt">
+      <span class="opt-label">サイズ</span>
+      <div class="chips" role="group" aria-label="${p.n} のサイズ">
+        ${p.sizes.map((s,i)=>`<button type="button" class="chip" data-size="${s}" data-id="${p.id}" aria-pressed="${i===0}">${s}</button>`).join('')}
+      </div>
+    </div>` : '';
+  const colorBlock = !p.colors ? '' : `
+    <div class="opt">
+      <span class="opt-label">カラー</span>
+      ${p.colors.length === 1
+        ? `<span class="opt-fixed">${p.colors[0]}</span>`
+        : `<select class="opt-select" data-color-for="${p.id}" aria-label="${p.n} のカラー">
+             ${p.colors.map(c => `<option>${c}</option>`).join('')}
+           </select>`}
+    </div>`;
+
+  const media = `<div class="media" data-kind="${p.kind}">
+      <img src="${p.img}" alt="${p.n}" loading="lazy">
+    </div>`;
+
+  return `<article class="card" id="card-${p.id}">
+    ${media}
+    <div class="card-id">
+      <div class="card-top">
+        <h3>${p.n}</h3>
+        ${p.isNew ? '<span class="tag tag-new">NEW</span>' : ''}
+      </div>
+      ${p.url ? `<a class="oflink" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.urlLabel}${EXT_ICON}</a>` : ''}
+    </div>
+    <div>
+      <div class="price">
+        <span class="price-now">${yen(inTax(p.p))}<small> 税込</small></span>
+        <span class="off">15% OFF</span>
+      </div>
+      <div class="price-sub">特別価格 ${yen(exTax(p.p))}（税抜）／ <span class="price-was">通常 <s>${yen(p.p)}</s>（税抜）</span></div>
+    </div>
+    ${sizeBlock}${colorBlock}
+    <div class="card-foot">
+      <div class="stepper">
+        <button type="button" data-step="-1" data-id="${p.id}" aria-label="数量を減らす">−</button>
+        <span class="qty" id="qty-${p.id}">1</span>
+        <button type="button" data-step="1" data-id="${p.id}" aria-label="数量を増やす">＋</button>
+      </div>
+      <button type="button" class="btn-add" data-add="${p.id}">リストに追加</button>
+    </div>
+  </article>`;
+}
+
+/* ---------- カート操作 ---------- */
+function addToCart(id){
+  const p = PRODUCTS.find(x => x.id === id);
+  const d = draft[id];
+  const key = [id, d.size, d.color].join('|');
+  const cur = cart.get(key);
+  if (cur) cur.qty += d.qty;
+  else cart.set(key, { id, name:p.n, size:d.size, color:d.color, unit:inTax(p.p), qty:d.qty });
+  renderPanel();
+  flash(id);
+  toast(`${p.n} をリストに追加しました`);
+}
+
+function flash(id){
+  const card = document.getElementById('card-' + id);
+  const btn = card.querySelector('.btn-add');
+  card.classList.add('is-added');
+  btn.classList.add('done'); btn.textContent = '追加しました';
+  setTimeout(() => { btn.classList.remove('done'); btn.textContent = 'リストに追加'; }, 1400);
+}
+
+function isRemote(){ const el = $('#remoteArea'); return !!(el && el.checked); }
+
+function calc(){
+  let items = 0, subtotal = 0;
+  cart.forEach(l => { items += l.qty; subtotal += l.unit * l.qty; });
+  if (subtotal === 0) return { items, subtotal, base:0, remote:0, ship:0, grand:0 };
+  const base   = subtotal >= CONFIG.freeShipOver ? 0 : CONFIG.shippingFee;
+  const remote = isRemote() ? CONFIG.remoteAreaFee : 0;
+  return { items, subtotal, base, remote, ship: base + remote, grand: subtotal + base + remote };
+}
+
+function renderPanel(){
+  const t = calc();
+
+  $('#panelBody').innerHTML = cart.size === 0
+    ? `<div class="empty"><strong>まだ商品が入っていません</strong>気になる商品の「リストに追加」を押すと、ここに集計されます。</div>`
+    : [...cart.entries()].map(([key, l]) => `
+      <div class="line">
+        <div class="line-main">
+          <div class="line-name">${l.name}</div>
+          ${(l.size || l.color) ? `<div class="line-var">${[l.size && 'サイズ '+l.size, l.color && l.color].filter(Boolean).join(' ／ ')}</div>` : ''}
+          <div class="line-calc">${yen(l.unit)} × ${l.qty}</div>
+        </div>
+        <div class="line-side">
+          <span class="line-sum">${yen(l.unit * l.qty)}</span>
+          <button class="line-del" data-del="${key}">削除</button>
+        </div>
+      </div>`).join('');
+
+  $('#panelCount').textContent = t.items + '点';
+  $('#dockVal').textContent = yen(t.grand);
+
+  $('#totals').innerHTML = `
+    <div class="trow"><span>商品小計（税込）</span><span class="num">${yen(t.subtotal)}</span></div>
+    <div class="trow"><span>送料</span><span class="num ${t.base===0&&t.subtotal>0?'ship-free':''}">${t.subtotal>0&&t.base===0?'無料':yen(t.base)}</span></div>
+    ${t.remote>0 ? `<div class="trow"><span>沖縄・離島 追加送料</span><span class="num">${yen(t.remote)}</span></div>` : ''}
+    <div class="trow grand"><span>お支払い合計</span><span class="num">${yen(t.grand)}</span></div>`;
+
+  /* ---- アラート ---- */
+  const zone = $('#alertZone');
+  const ok = t.subtotal >= CONFIG.minOrder;
+  if (t.subtotal === 0){
+    zone.innerHTML = '';
+  } else if (!ok){
+    zone.innerHTML = alertHTML('block','!',
+      `<b>この内容では申請できません。</b><br>配送コストの関係で、ご注文は<b>税込 ${yen(CONFIG.minOrder)}以上</b>から承っています。あと <b>${yen(CONFIG.minOrder - t.subtotal)}</b> 追加してください。`);
+  } else if (t.base > 0){
+    zone.innerHTML = alertHTML('warn','!',
+      `<b>送料 ${yen(CONFIG.shippingFee)} がかかります。</b><br>あと <b>${yen(CONFIG.freeShipOver - t.subtotal)}</b> で送料無料になります。` +
+      (t.remote > 0 ? `<br>沖縄・離島の追加送料 ${yen(t.remote)} は、送料無料になった場合も申し受けます。` : ''));
+  } else if (t.remote > 0){
+    zone.innerHTML = alertHTML('ok','✓',
+      `<b>本州向けの送料は無料です。</b><br>沖縄・離島への追加送料 ${yen(t.remote)} のみ申し受けます。`);
+  } else {
+    zone.innerHTML = alertHTML('ok','✓','<b>送料無料の対象です。</b>このまま購入申請にお進みいただけます。');
+  }
+
+  updateSubmitLinks();
+}
+
+const alertHTML = (kind, icon, html) =>
+  `<div class="alert alert-${kind}"><span class="alert-icon">${icon}</span><div>${html}</div></div>`;
+
+/* ---------- 申請内容の文面 ---------- */
+let orderId = '';
+function newOrderId(){
+  const d = new Date(), z = n => String(n).padStart(2,'0');
+  return 'SW-' + String(d.getFullYear()).slice(2) + z(d.getMonth()+1) + z(d.getDate())
+       + '-' + String(Math.floor(Math.random()*9000)+1000);
+}
+function orderText(){
+  const t = calc();
+  const lines = [...cart.values()].map((l,i) =>
+    `${i+1}. ${l.name}` +
+    ((l.size||l.color) ? `\n   [${[l.size&&'サイズ '+l.size, l.color].filter(Boolean).join(' / ')}]` : '') +
+    `\n   ${yen(l.unit)} × ${l.qty} = ${yen(l.unit*l.qty)}`).join('\n');
+  const ship = [
+    `送料: ${t.base === 0 ? '無料' : yen(t.base)}`,
+    t.remote > 0 ? `沖縄・離島 追加送料: ${yen(t.remote)}` : null
+  ].filter(Boolean).join('\n');
+  return `申請ID: ${orderId}\n\n${lines}\n\n―――――――――\n商品小計（税込）: ${yen(t.subtotal)}\n${ship}\nお支払い合計: ${yen(t.grand)}`;
+}
+
+let submitInfo = null;
+
+/** 申請リンクの遷移先を組み立てる（カートが空なら null） */
+function buildSubmitInfo(){
+  const t = calc();
+  if (t.subtotal <= 0) return null;
+  orderId = orderId || newOrderId();
+  const body = orderText();
+
+  if (CONFIG.formUrl && CONFIG.entry.items){
+    const u = new URL(CONFIG.formUrl);
+    u.searchParams.set('usp','pp_url');
+    if (CONFIG.entry.orderId) u.searchParams.set(CONFIG.entry.orderId, orderId);
+    u.searchParams.set(CONFIG.entry.items, body);
+    if (CONFIG.entry.total) u.searchParams.set(CONFIG.entry.total, String(t.grand));
+    const href = u.toString();
+
+    /* 注文点数が多いとURLが長くなりすぎ、フォームが開けなくなる。
+       その場合だけ空のフォームへ送り、注文内容はクリップボード経由で渡す。 */
+    return href.length > 7000
+      ? { href: CONFIG.formUrl, body, longOrder: true }
+      : { href, body };
+  }
+
+  const subject = `【購入申請】シルバーウィーク特別販売 ${orderId}`;
+  const mail = `お名前：\nお電話番号：\n配送先 郵便番号：\n配送先 住所：\n\n${body}\n`;
+  return {
+    href: `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mail)}`,
+    body, isMail: true
+  };
+}
+
+/* 申請ボタンは <a href> にしている。
+   Artifactはサンドボックス内で動くため window.open() がブロックされることがあり、
+   素のリンク遷移の方が確実に開くため。 */
+function updateSubmitLinks(){
+  submitInfo = buildSubmitInfo();
+  const label = CONFIG.formUrl ? '購入申請フォームへ進む' : '購入申請メールを作成する';
+  $('#btnSubmit').textContent = label;
+
+  [$('#btnSubmit'), $('#dockBtn')].forEach(el => {
+    if (!el) return;
+    if (!submitInfo){
+      el.removeAttribute('href');
+      el.setAttribute('aria-disabled','true');
+    } else {
+      el.href = submitInfo.href;
+      el.target = submitInfo.isMail ? '_self' : '_blank';
+      el.setAttribute('aria-disabled','false');
+    }
+  });
+}
+
+function onSubmitClick(){
+  if (!submitInfo) return;
+  if (submitInfo.longOrder){
+    copyText(submitInfo.body);
+    toast('点数が多いため申請内容をコピーしました。フォームの「ご注文内容」に貼り付けてください');
+  } else if (submitInfo.isMail){
+    toast('メールを作成しました。不足項目をご記入のうえ送信してください');
+  } else {
+    toast('入力済みの申請フォームを開きました');
+  }
+}
+
+/* ---------- 補助 ---------- */
+let toastTimer;
+function toast(msg){
+  const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>el.classList.remove('show'), 2400);
+}
+async function copyText(text){
+  try { await navigator.clipboard.writeText(text); } catch { /* 手入力にフォールバック */ }
+}
+
+function buildRules(){
+  const R = [
+    ['対象者','セラピストドットコム会員の皆さま。ご本人・ご家族でのご利用を想定しています。'],
+    ['割引','対象3ブランドの全商品が通常価格から一律15%OFF。表示価格はすべて割引後の金額です。'],
+    ['お申込み期限', CONFIG.deadlineLabel + ' まで'],
+    ['送料','税込 ' + yen(CONFIG.freeShipOver) + ' 以上のご注文で無料。未満の場合は全国一律 ' + yen(CONFIG.shippingFee) + '。'],
+    ['沖縄・離島','送料が無料になる場合も含め、一律 <b>' + yen(CONFIG.remoteAreaFee) + '</b> の追加送料を申し受けます。該当する場合は申請リストのチェックを入れてください。'],
+    ['お支払い','銀行振込（前払い）。購入申請の送信後、振込先と金額を記載した確認メールが自動で届きます。<b>お申込みから1週間以内</b>にお振込みください。振込手数料はお客様のご負担でお願いします。'],
+    ['お届け','ご入金確認から2週間程度（メーカー在庫状況により前後します）。'],
+    ['カラー・サイズ','在庫状況により、ご希望の色をお受けできない場合があります。その際は事務局からご連絡します。'],
+    ['キャンセル・返品','メーカー発注後のキャンセル、お客様都合による返品・交換は承れません。初期不良はメーカー保証に準じます。'],
+    ['お問い合わせ', CONFIG.contactEmail]
+  ];
+  $('#rulesList').innerHTML = R.map(([t,d]) => `<dt>${t}</dt><dd>${d}</dd>`).join('');
+}
+
+/* ---------- イベント ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('button');
+  if (!t) return;
+
+  if (t.dataset.size){
+    const id = t.dataset.id;
+    document.querySelectorAll(`.chip[data-id="${id}"]`).forEach(c => c.setAttribute('aria-pressed','false'));
+    t.setAttribute('aria-pressed','true');
+    draft[id].size = t.dataset.size;
+  }
+  if (t.dataset.step){
+    const id = t.dataset.id;
+    draft[id].qty = Math.max(1, Math.min(20, draft[id].qty + Number(t.dataset.step)));
+    document.getElementById('qty-' + id).textContent = draft[id].qty;
+  }
+  if (t.dataset.add){ addToCart(t.dataset.add); }
+  if (t.dataset.del){ cart.delete(t.dataset.del); renderPanel(); }
+  if (t.dataset.b){
+    document.querySelectorAll('#brandnav button').forEach(b => b.setAttribute('aria-current', String(b === t)));
+    document.getElementById('sec-' + t.dataset.b).scrollIntoView({behavior:'smooth', block:'start'});
+  }
+});
+document.addEventListener('change', e => {
+  const id = e.target.dataset && e.target.dataset.colorFor;
+  if (id) draft[id].color = e.target.value;
+});
+$('#remoteArea').addEventListener('change', renderPanel);
+$('#btnSubmit').addEventListener('click', onSubmitClick);
+$('#dockBtn').addEventListener('click', onSubmitClick);
+
+/* ---------- 初期化 ---------- */
+$('#deadlinePill').textContent = '申込締切 ' + CONFIG.deadlineLabel;
+$('#factShip').textContent = yen(CONFIG.freeShipOver) + '以上で無料';
+$('#footMail').innerHTML = `<a href="mailto:${CONFIG.contactEmail}">${CONFIG.contactEmail}</a>`;
+buildCatalog();
+wireImages();
+buildRules();
+renderPanel();
+</script>
+</body>
+</html>
