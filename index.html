@@ -398,7 +398,7 @@ select.opt-select{
 </header>
 
 <section class="hero" id="top">
-  <div class="hero-in hero-grid">
+  <div class="hero-in">
    <div>
     <div class="eyebrow"><span class="hl">MEMBERS ONLY</span> ／ MTG BRAND ／ 期間限定</div>
     <div class="hero-sub">セラピストドットコム会員限定</div>
@@ -411,7 +411,6 @@ select.opt-select{
       <div class="fact"><dt>お支払い</dt><dd>銀行振込（前払い）</dd></div>
     </dl>
    </div>
-    <a class="teaser" href="#featured" id="teaser" aria-label="看板商品 SIXPAD Medical Core を見る"></a>
   </div>
 </section>
 
@@ -643,7 +642,7 @@ function featureHTML(p){
       </div>
     </div>
     <div class="feature-body">
-      <div class="feature-kicker">今回の看板商品</div>
+      <div class="feature-kicker">イチオシ商品！一番売れてます！</div>
       <h2 id="ft-${p.id}">${p.n}</h2>
       <div class="feature-tags">
         <span class="ftag">医療機器認証取得</span>
@@ -672,10 +671,6 @@ function buildCatalog(){
   const feat = PRODUCTS.find(p => p.featured);
   if (feat){
     $('#featured').innerHTML = featureHTML(feat);
-    $('#teaser').innerHTML = `<div class="teaser-k">今回の看板商品</div>
-      <div class="teaser-img"><img src="${feat.img}" alt=""></div>
-      <div class="teaser-n">${feat.n}</div>
-      <div class="teaser-p"><span class="num">${yen(inTax(feat.p))}<small style="font-size:11px;font-weight:500"> 税込</small></span><span class="teaser-go">詳しく見る ↓</span></div>`;
   }
 
   $('#brandnav').innerHTML = BRANDS.map((b,i) =>
